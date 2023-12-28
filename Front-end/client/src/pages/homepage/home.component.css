@@ -1,0 +1,19 @@
+.hero-img {
+  background-image: url("../../assets/hero.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* mangaBg */
+.mangaBg {
+  background-image: url("https://e1.pxfuel.com/desktop-wallpaper/734/920/desktop-wallpaper-manga-page-manga-panels.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.advice {
+  -webkit-filter: drop-shadow(5px 5px 5px #222);
+  filter: drop-shadow(10px 5px 5px #222);
+}

@@ -1,0 +1,181 @@
+<navbar-component></navbar-component>
+
+<!-- hero -->
+<section class="hero-img w-full h-screen relative">
+  <div
+    class="w-0 h-0 border-l-[100px] border-l-transparent border-b-[100px] border-b-[white] border-solid absolute bottom-0 right-0"
+  ></div>
+</section>
+
+<!-- category -->
+<section class="w-full py-20 h-[500px] relative flex justify-between">
+  <!-- title -->
+  <div class="w-[50%] h-full ms-20 flex justify-center flex-col">
+    <h1 class="text-[100px] mb-2 font-bold">Genre</h1>
+    <p class="font-light text-[15px]">
+      We always add new manga to our collection every week. From popular series
+      to newly released titles, Sorairocomic is the best place to find the
+      latest manga you love.
+    </p>
+  </div>
+
+  <!-- carousel -->
+  <div
+    id="myCarousel"
+    class="carousel carousel-center max-w-sm p-4 space-x-4 me-5"
+  >
+    <div class="carousel-item group overflow-hidden relative cursor-pointer">
+      <img
+        src="https://w0.peakpx.com/wallpaper/284/255/HD-wallpaper-eren-attack-on-titan-eren-jaeger-eren-yeager-shingeki-no-kyojin.jpg"
+        class="w-[230px] transition-all duration-300 ease-in-out group-hover:scale-110 group-hover:blur-[1px]"
+      />
+      <h1
+        class="cursor-default rounded-sm font-semibold px-7 py-1 absolute bottom-5 -left-full bg-white text-black transition-all duration-300 ease-in-out group-hover:left-5"
+      >
+        Action
+      </h1>
+    </div>
+    <div class="carousel-item group overflow-hidden relative cursor-pointer">
+      <img
+        src="https://wallpapercave.com/wp/wp10172355.jpg"
+        class="w-[230px] transition-all duration-300 ease-in-out group-hover:scale-110 group-hover:blur-[1px]"
+      />
+      <h1
+        class="cursor-default rounded-sm font-semibold px-7 py-1 absolute bottom-5 -left-full bg-white text-black transition-all duration-300 ease-in-out group-hover:left-5"
+      >
+        Adventure
+      </h1>
+    </div>
+    <div class="carousel-item group overflow-hidden relative cursor-pointer">
+      <img
+        src="https://w0.peakpx.com/wallpaper/252/235/HD-wallpaper-deathnote-8-death-note-ryuk-kira-light-yagami.jpg"
+        class="w-[230px] transition-all duration-300 ease-in-out group-hover:scale-110 group-hover:blur-[1px]"
+      />
+      <h1
+        class="cursor-default rounded-sm font-semibold px-7 py-1 absolute bottom-5 -left-full bg-white text-black transition-all duration-300 ease-in-out group-hover:left-5"
+      >
+        Psychology
+      </h1>
+    </div>
+    <div class="carousel-item group overflow-hidden relative cursor-pointer">
+      <img
+        src="https://w0.peakpx.com/wallpaper/640/370/HD-wallpaper-your-lie-in-april-calm-violin.jpg"
+        class="w-[230px] transition-all duration-300 ease-in-out group-hover:scale-110 group-hover:blur-[1px]"
+      />
+      <h1
+        class="cursor-default rounded-sm font-semibold px-7 py-1 absolute bottom-5 -left-full bg-white text-black transition-all duration-300 ease-in-out group-hover:left-5"
+      >
+        Drama
+      </h1>
+    </div>
+    <div class="carousel-item group overflow-hidden relative cursor-pointer">
+      <img
+        src="https://w0.peakpx.com/wallpaper/186/289/HD-wallpaper-sword-art-online-kirito-sao.jpg"
+        class="w-[230px] transition-all duration-300 ease-in-out group-hover:scale-110 group-hover:blur-[1px]"
+      />
+      <h1
+        class="cursor-default rounded-sm font-semibold px-7 py-1 absolute bottom-5 -left-full bg-white text-black transition-all duration-300 ease-in-out group-hover:left-5"
+      >
+        fantasy
+      </h1>
+    </div>
+    <div class="carousel-item group overflow-hidden relative cursor-pointer">
+      <img
+        src="https://w0.peakpx.com/wallpaper/739/19/HD-wallpaper-komi-can-t-communicate-komi-san-and-tadano-komi-and-tadano-komi-can-x27-t-communicate-tadano-anime.jpg"
+        class="w-[230px] transition-all duration-300 ease-in-out group-hover:scale-110 group-hover:blur-[1px]"
+      />
+      <h1
+        class="cursor-default rounded-sm font-semibold px-7 py-1 absolute bottom-5 -left-full bg-white text-black transition-all duration-300 ease-in-out group-hover:left-5"
+      >
+        romance
+      </h1>
+    </div>
+    <div class="carousel-item group overflow-hidden relative cursor-pointer">
+      <div
+        class="w-[230px] h-full flex justify-center items-center bg-gray-400"
+      >
+        <h1
+          class="text-white text-[30px] transition-all duration-300 ease-in-out font-bold group-hover:text-[40px]"
+        >
+          More
+        </h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- product -->
+<section class="w-full h-fit bg-[#B2D0DB] relative p-20">
+  <!-- decorations -->
+  <div
+    class="w-0 h-0 border-r-[100px] border-r-transparent border-t-[100px] border-t-[white] border-solid absolute top-0 left-0"
+  ></div>
+
+  <!-- title -->
+  <div
+    class="w-full h-fit flex items-center justify-between border-b-2 border-white pb-2"
+  >
+    <button class="ms-5 px-2 py-1 bg-gray-300 rounded-md">View more</button>
+    <h1 class="text-[30px] font-bold pe-5 text-white">Product</h1>
+  </div>
+
+  <!-- gallery -->
+  <div class="w-full flex justify-center flex-wrap">
+    <!-- card -->
+    <div
+      *ngFor="let comic of arrComic"
+      class="w-[250px] h-[320px] bg-white shadow-lg m-5 rounded-md overflow-hidden group relative"
+    >
+      <img
+        src="{{ comic.imgUrl }}"
+        alt="{{ comic.name }}"
+        class="absolute shadow-lg shadow-black w-full h-full duration-300 ease-in-out transition-all group-hover:scale-50"
+      />
+
+      <!-- title -->
+      <div class="w-full h-full flex flex-col justify-between items-center p-2">
+        <div class="">
+          <h1 class="text-center">{{ comic.name }}</h1>
+          <p class="text-center">{{ comic.genre }}</p>
+        </div>
+        <div class="w-full flex justify-around">
+          <button class="px-5 py-1 bg-blue-300">Buy</button>
+          <button class="px-5 py-1 bg-blue-300">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- chat -->
+<section
+  class="w-full h-screen px-20 py-10 flex justify-center items-center relative my-2"
+>
+  <!-- bg -->
+  <div class="mangaBg w-full h-full absolute blur-sm"></div>
+  <div class="w-[90%] h-full flex relative">
+    <!-- img -->
+    <div class="w-[30%] h-full absolute left-10 top-0 z-10">
+      <img
+        class="advice w-full h-full"
+        src="../../assets/anime.png"
+        alt="anime"
+      />
+    </div>
+    <!-- title -->
+    <div
+      class="w-full h-[45%] bg-gray-300 absolute bottom-0 flex justify-end items-center shadow-lg shadow-black px-10"
+    >
+      <div class="w-[60%]">
+        <h1 class="text-[20px]">
+          If you have any suggestions or recommendations for interesting manga
+          or comics, we'd love to hear them! We believe that each recommendation
+          has its own unique story.
+        </h1>
+        <button class="mt-5 px-10 py-3 bg-white">Contact Us</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer-component></footer-component>
