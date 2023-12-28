@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"sorairocomic/router"
+	"sorairocomic/routers"
 
 	"github.com/gin-gonic/gin"
 )
@@ -11,7 +11,7 @@ func main() {
 	app := gin.Default()
 	port := 3000
 
-	router.PostLogin(app.Group("/login"))
+	routers.Index(app.Group("/"))
 
 	app.Run(fmt.Sprintf(":%d", port))
 	fmt.Println("http://localhost:3000/")
