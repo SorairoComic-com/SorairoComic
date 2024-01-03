@@ -6,18 +6,12 @@ import (
 )
 
 type LoginBody struct {
-	Username string
-	Password string
+	UsernameOrEmail string
+	Password        string
 }
 
 type LoginResponse struct {
 	AccessToken string `json:"access_token"`
-}
-
-type User struct {
-	Id       primitive.ObjectID `bson:"_id"`
-	Username string
-	Password string
 }
 
 type Token struct {
@@ -25,6 +19,15 @@ type Token struct {
 	jwt.StandardClaims
 }
 
-type Error struct {
-	Message string `json:"message"`
+type RegisterBody struct {
+	Username string `validate:"required"`
+	Email    string `validate:"required,email"`
+	Password string `validate:"required,min=8"`
+}
+
+type User struct {
+	Id       primitive.ObjectID `bson:"_id" json:"_id"`
+	Username string             `json:"username"`
+	Email    string             `json:"email"`
+	Password string             `json:"password,omitempty"`
 }
