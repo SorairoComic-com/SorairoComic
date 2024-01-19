@@ -16,12 +16,12 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-var coll = config.MongoDB().Collection("Users")
+var collUsers = config.MongoDB().Collection("Users")
 
 func Login(c *gin.Context) {
 	var requestBody types.LoginBody
 	if err := c.BindJSON(&requestBody); err != nil {
-		errors.GetMessageError(c, "Invalid Body")
+		errors.GetMessageError(c, 400, "Invalid Body")
 		return
 	}
 
@@ -35,19 +35,19 @@ func Login(c *gin.Context) {
 		}},
 	}
 
-	cursor, _ := coll.Aggregate(context.TODO(), mongo.Pipeline{pipeline})
+	cursor, _ := collUsers.Aggregate(context.TODO(), mongo.Pipeline{pipeline})
 	if err := cursor.All(context.TODO(), &users); err != nil {
-		errors.GetMessageError(c, "Invalid Username/Email")
+		errors.GetMessageError(c, 500, "Internal Server Error")
 		return
 	}
 
 	if len(users) == 0 {
-		errors.GetMessageError(c, "Invalid Username/Email")
+		errors.GetMessageError(c, 400, "Invalid Username/Email")
 		return
 	}
 
 	if isLogin := helpers.ComparePassword(requestBody.Password, users[0].Password); isLogin == false {
-		errors.GetMessageError(c, "Invalid Username/Email")
+		errors.GetMessageError(c, 400, "Invalid Username/Email")
 		return
 	}
 
@@ -63,22 +63,22 @@ func Login(c *gin.Context) {
 func Register(c *gin.Context) {
 	var requestBody types.RegisterBody
 	if err := c.BindJSON(&requestBody); err != nil {
-		errors.GetMessageError(c, "Invalid Body")
+		errors.GetMessageError(c, 400, "Invalid Body")
 		return
 	}
 
 	v := validator.New()
 	if err := v.Struct(requestBody); err != nil {
 		if err.(validator.ValidationErrors)[0].Tag() == "required" {
-			errors.GetMessageError(c, err.(validator.ValidationErrors)[0].Field()+" is required")
+			errors.GetMessageError(c, 400, err.(validator.ValidationErrors)[0].Field()+" is required")
 			return
 		}
 		if err.(validator.ValidationErrors)[0].Tag() == "email" {
-			errors.GetMessageError(c, "Invalid email format")
+			errors.GetMessageError(c, 400, "Invalid email format")
 			return
 		}
 		if err.(validator.ValidationErrors)[0].Tag() == "min" {
-			errors.GetMessageError(c, "Password should at least 8 characters")
+			errors.GetMessageError(c, 400, "Password should at least 8 characters")
 			return
 		}
 	}
@@ -93,21 +93,21 @@ func Register(c *gin.Context) {
 		}},
 	}
 
-	cursor, _ := coll.Aggregate(context.TODO(), mongo.Pipeline{pipeline})
+	cursor, _ := collUsers.Aggregate(context.TODO(), mongo.Pipeline{pipeline})
 	if err := cursor.All(context.TODO(), &users); err == nil && len(users) > 0 {
 		if users[0].Username == requestBody.Username {
-			errors.GetMessageError(c, "Username already exists")
+			errors.GetMessageError(c, 400, "Username already exists")
 			return
 		}
 		if users[0].Email == requestBody.Email {
-			errors.GetMessageError(c, "Email already exists")
+			errors.GetMessageError(c, 400, "Email already exists")
 			return
 		}
 	}
 
 	hashedPassword := helpers.HashPassword(requestBody.Password)
 
-	result, _ := coll.InsertOne(context.TODO(), types.RegisterBody{
+	result, _ := collUsers.InsertOne(context.TODO(), types.RegisterBody{
 		Username: requestBody.Username,
 		Email:    requestBody.Email,
 		Password: hashedPassword,
