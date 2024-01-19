@@ -6,4 +6,5 @@ import (
 
 func Index(router *gin.RouterGroup) {
 	User(router.Group("/"))
+	Comics(router.Group("/comics"))
 }
